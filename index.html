@@ -1,0 +1,54 @@
+<style>
+* { margin:0; padding: 0;}
+img { width: 100%; max-width: 1280px; height: auto; }
+img.retina { width: 320px; height: auto; }
+#dp { background: coral; }
+</style>
+<h1>レスポンシブイメージサンプル</h1>
+<p>画像素材は https://ics.media/entry/13324/ より </p>
+<h2>img</h2>
+<p>画面幅に応じた素材の読み替え。画面幅に応じて大・中の画像が入れ替わります。</p>
+<img
+	   srcset="images/medium.jpg 640w,images/large.jpg 1280w"
+	   sizes="(max-width:1280px) 100vw,1280px"
+	   width="1280"
+	   height="512"
+	   />
+<h2>img(2)</h2>
+<p>デバイスピクセル比に応じた素材の読み替え(Retina対応)。幅は同じでもデバイスピクセル比の異なるデバイスで使用される素材が入れ替わります。</p>
+<p>デバイスピクセル比が１の場合 ... medium.jpg, １以上の場合 ... large.jpg</p>
+<p id="dp"></p>
+<script>
+	const dp = document.querySelector('#dp');
+	dp.innerHTML = `現在のデバイスピクセル比: ${window.devicePixelRatio}`;
+</script>
+<img   
+	   class="retina"
+	   srcset="images/medium.jpg 1x,images/large.jpg 2x"
+	   width="1280"
+	   height="512"
+	   />
+<h2>picture</h2>
+<p>画面幅に応じたアートディレクションの変更。最も小さな幅では、縦横比の異なる画像に差し替えます。</p>
+<picture>
+	<source
+		media="(max-width:380px)"
+		srcset="images/small.jpg 640w"
+		sizes="100vw"
+		width="640"
+		height="640"
+		/>
+	<source
+		media="(max-width:640px)"
+		srcset="images/medium.jpg 640w"
+		sizes="100vw"
+		width="1280"
+		height="512"
+		/>
+	<img src="images/large.jpg"
+		 alt=""
+		 sizes="1280px"
+		 width="1280"
+		 height="512"
+		 />
+</picture>
